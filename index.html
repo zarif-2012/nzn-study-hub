@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NZN STUDY HUB</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f5ff;
+  color:#172033;
+}
+
+body.dark{
+  background:#101522;
+  color:white;
+}
+
+header{
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+
+header h1{
+  margin:0;
+  font-size:32px;
+}
+
+header p{
+  margin:8px 0 0;
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:7px;
+  padding:10px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+body.dark nav{
+  background:#182033;
+}
+
+nav button{
+  border:0;
+  border-radius:20px;
+  padding:10px 13px;
+  background:#e5e7eb;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+nav button:hover{
+  background:#2563eb;
+  color:white;
+}
+
+main{
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  margin-bottom:15px;
+  box-shadow:0 5px 18px #0002;
+}
+
+body.dark .card{
+  background:#182033;
+}
+
+.hero{
+  text-align:center;
+  background:linear-gradient(135deg,#dbeafe,#eef2ff);
+}
+
+body.dark .hero{
+  background:linear-gradient(135deg,#172554,#1e3a8a);
+}
+
+.btn{
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:12px 18px;
+  border-radius:10px;
+  margin:5px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+}
+
+select,input{
+  width:100%;
+  padding:12px;
+  margin:7px 0 14px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  font-size:16px;
+}
+
+body.dark select,
+body.dark input{
+  background:#0f172a;
+  color:white;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+}
+
+.stat{
+  text-align:center;
+  padding:15px;
+  background:#eef2ff;
+  border-radius:15px;
+}
+
+body.dark .stat{
+  background:#26345a;
+}
+
+.question{
+  font-size:21px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.answer{
+  width:100%;
+  display:block;
+  text-align:left;
+  padding:14px;
+  margin:8px 0;
+  border:1px solid #cbd5e1;
+  background:#f8fafc;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.answer:hover{
+  background:#dbeafe;
+}
+
+.correct{
+  background:#bbf7d0 !important;
+  border-color:#16a34a !important;
+}
+
+.wrong{
+  background:#fecaca !important;
+  border-color:#dc2626 !important;
+}
+
+.hidden{
+  display:none;
+}
+
+.progress{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#2563eb;
+}
+
+.big{
+  font-size:55px;
+  font-weight:bold;
+  color:#2563eb;
+  text-align:center;
+}
+
+.badge{
+  display:inline-block;
+  background:#eef2ff;
+  padding:12px;
+  margin:5px;
+  border-radius:12px;
+}
+
+body.dark .badge{
+  background:#26345a;
+}
+
+.timer{
+  font-size:60px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.task{
+  padding:12px;
+  border-bottom:1px solid #ddd;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📚 NZN STUDY HUB</h1>
+<p>LEARN • PLAY • ACHIEVE 🏆</p>
+</header>
+
+<nav>
+<button onclick="showPage('home')">🏠 Home</button>
+<button onclick="showPage('quiz')">🧠 Quiz</button>
+<button onclick="showPage('fun')">🎮 Fun</button>
+<button onclick="showPage('profile')">🏆 Profile</button>
+<button onclick="showPage('planner')">📝 Planner</button>
+<button onclick="showPage('timer')">⏱️ Timer</button>
+<button onclick="darkMode()">🌙</button>
+</nav>
+
+<main>
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="card hero">
+
+<h2>Welcome to NZN STUDY HUB 🚀</h2>
+
+<p>
+Study smart, play quizzes, earn XP and unlock badges!
+</p>
+
+<button class="btn" onclick="showPage('quiz')">
+🧠 START QUIZ
+</button>
+
+<button class="btn" onclick="showPage('fun')">
+🎮 FUN ZONE
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="stat">
+<h2>⭐</h2>
+<h3 id="homeXP">0 XP</h3>
+<p>XP</p>
+</div>
+
+<div class="stat">
+<h2>🏆</h2>
+<h3 id="homeLevel">Beginner</h3>
+<p>Level</p>
+</div>
+
+<div class="stat">
+<h2>🎖️</h2>
+<h3 id="homeBadges">0</h3>
+<p>Badges</p>
+</div>
+
+<div class="stat">
+<h2>🧠</h2>
+<h3 id="homeQuizzes">0</h3>
+<p>Quizzes</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>💡 Motivation</h2>
+
+<p id="motivation"></p>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="page">
+
+<div id="quizSetup" class="card">
+
+<h2>🧠 QUIZ ZONE</h2>
+
+<label>📚 Choose Subject</label>
+
+<select id="subject">
+<option>Mathematics</option>
+<option>Science</option>
+<option>Social Science</option>
+<option>English</option>
+<option>Tamil</option>
+<option>General Knowledge</option>
+</select>
+
+<label>🎓 Choose Standard</label>
+
+<select id="standard">
+<option>Class 6</option>
+<option>Class 7</option>
+<option>Class 8</option>
+<option>Class 9</option>
+<option>Class 10</option>
+<option>Class 11</option>
+<option>Class 12</option>
+</select>
+
+<label>⚡ Difficulty</label>
+
+<select id="difficulty">
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+
+<button class="btn" onclick="startQuiz()">
+🔥 START 10 QUESTION QUIZ
+</button>
+
+</div>
+
+
+<div id="quizGame" class="card hidden">
+
+<h2 id="quizTitle"></h2>
+
+<div class="progress">
+<div id="quizBar" class="progress-bar"></div>
+</div>
+
+<p id="quizCount"></p>
+
+<div id="quizQuestion" class="question"></div>
+
+<div id="quizAnswers"></div>
+
+<p id="quizFeedback"></p>
+
+<button id="quizNext"
+class="btn hidden"
+onclick="nextQuestion()">
+NEXT QUESTION ➡️
+</button>
+
+</div>
+
+
+<div id="quizResult" class="card hidden">
+
+<h2 style="text-align:center">
+🎉 QUIZ COMPLETE!
+</h2>
+
+<div id="quizScore" class="big">
+0/10
+</div>
+
+<h2 id="quizMessage" style="text-align:center"></h2>
+
+<p id="quizEarned" style="text-align:center"></p>
+
+<button class="btn"
+onclick="backToQuiz()">
+🔄 PLAY AGAIN
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FUN -->
+
+<section id="fun" class="page">
+
+<div id="funStart" class="card hero">
+
+<h2>🎮 FUN ZONE</h2>
+
+<p>
+Take a fun 10-question general knowledge challenge!
+</p>
+
+<button class="btn" onclick="startFun()">
+🔥 START FUN QUIZ
+</button>
+
+</div>
+
+
+<div id="funGame" class="card hidden">
+
+<h2>🎮 FUN CHALLENGE</h2>
+
+<div class="progress">
+<div id="funBar" class="progress-bar"></div>
+</div>
+
+<p id="funCount"></p>
+
+<div id="funQuestion" class="question"></div>
+
+<div id="funAnswers"></div>
+
+<p id="funFeedback"></p>
+
+<button id="funNext"
+class="btn hidden"
+onclick="nextFun()">
+NEXT ➡️
+</button>
+
+</div>
+
+
+<div id="funResult" class="card hidden">
+
+<h2 style="text-align:center">
+🎉 FUN COMPLETE!
+</h2>
+
+<div id="funScore" class="big">
+0/10
+</div>
+
+<h2 id="funMessage" style="text-align:center"></h2>
+
+<button class="btn"
+onclick="startFun()">
+🔄 PLAY AGAIN
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+<div class="card">
+
+<h2>🏆 MY PROFILE</h2>
+
+<div style="text-align:center">
+
+<div style="font-size:70px">
+🧑‍🎓
+</div>
+
+<h2 id="profileLevel">
+Beginner
+</h2>
+
+<h1 id="profileXP">
+0 XP
+</h1>
+
+<p id="nextLevel"></p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Statistics</h2>
+
+<div class="grid">
+
+<div class="stat">
+<h2 id="statXP">0</h2>
+<p>XP</p>
+</div>
+
+<div class="stat">
+<h2 id="statQuizzes">0</h2>
+<p>Quizzes</p>
+</div>
+
+<div class="stat">
+<h2 id="statBest">0</h2>
+<p>Best Score</p>
+</div>
+
+<div class="stat">
+<h2 id="statBadges">0</h2>
+<p>Badges</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎖️ BADGES</h2>
+
+<div id="badges"></div>
+
+</div>
+
+</section>
+
+
+<!-- PLANNER -->
+
+<section id="planner" class="page">
+
+<div class="card">
+
+<h2>📝 STUDY PLANNER</h2>
+
+<input id="taskInput"
+placeholder="Example: Study Science Chapter 1">
+
+<button class="btn"
+onclick="addTask()">
+➕ ADD TASK
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>📋 MY TASKS</h2>
+
+<div id="taskList"></div>
+
+</div>
+
+</section>
+
+
+<!-- TIMER -->
+
+<section id="timer" class="page">
+
+<div class="card">
+
+<h2>⏱️ FOCUS TIMER</h2>
+
+<p style="text-align:center">
+Study for 25 minutes without distractions.
+</p>
+
+<div id="timerDisplay" class="timer">
+25:00
+</div>
+
+<div style="text-align:center">
+
+<button class="btn"
+onclick="startTimer()">
+▶ START
+</button>
+
+<button class="btn"
+onclick="pauseTimer()">
+⏸ PAUSE
+</button>
+
+<button class="btn"
+onclick="resetTimer()">
+🔄 RESET
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+NZN STUDY HUB © 2026<br>
+Learn • Play • Achieve 🚀
+</footer>
+
+
+<script>
+
+/* =========================
+   PLAYER
+========================= */
+
+var player =
+JSON.parse(localStorage.getItem("nznPlayer")) || {
+xp:0,
+quizzes:0,
+best:0,
+badges:[]
+};
+
+
+/* =========================
+   LEVELS
+========================= */
+
+var levels = [
+
+["Beginner",0],
+["Learner",50],
+["Student",100],
+["Quick Learner",200],
+["Skilled",350],
+["Pro Student",500],
+["Expert",750],
+["Master",1000],
+["Champion",1500],
+["Genius",2000],
+["Grand Scholar",3000],
+["Ultimate Scholar",5000]
+
+];
+
+
+function currentLevel(){
+
+var result=levels[0];
+
+for(var i=0;i<levels.length;i++){
+
+if(player.xp>=levels[i][1]){
+result=levels[i];
+}
+
+}
+
+return result;
+
+}
+
+
+/* =========================
+   BADGES
+========================= */
+
+var badgeData=[
+
+["first","🎯 First Quiz",1],
+["50","⭐ 50 XP",50],
+["100","🔥 100 XP",100],
+["250","💎 250 XP",250],
+["500","🏆 500 XP",500],
+["1000","👑 1000 XP",1000],
+["perfect","💯 Perfect 10/10",0],
+["five","🧠 5 Quizzes",5],
+["ten","📚 10 Quizzes",10],
+["twentyfive","🏅 25 Quizzes",25],
+["fifty","👑 50 Quizzes",50],
+["expert","💎 Expert",750],
+["champion","🏆 Champion",1500],
+["genius","🌟 Genius",2000],
+["grand","🌟 Grand Scholar",3000],
+["ultimate","👑 Ultimate Scholar",5000]
+
+];
+
+
+function unlock(id){
+
+if(player.badges.indexOf(id)===-1){
+
+player.badges.push(id);
+
+}
+
+}
+
+
+function checkXPBadges(){
+
+if(player.xp>=50)unlock("50");
+if(player.xp>=100)unlock("100");
+if(player.xp>=250)unlock("250");
+if(player.xp>=500)unlock("500");
+if(player.xp>=1000)unlock("1000");
+if(player.xp>=750)unlock("expert");
+if(player.xp>=1500)unlock("champion");
+if(player.xp>=2000)unlock("genius");
+if(player.xp>=3000)unlock("grand");
+if(player.xp>=5000)unlock("ultimate");
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function savePlayer(){
+
+localStorage.setItem(
+"nznPlayer",
+JSON.stringify(player)
+);
+
+updateUI();
+
+}
+
+
+/* =========================
+   UI
+========================= */
+
+function updateUI(){
+
+checkXPBadges();
+
+var level=currentLevel();
+
+document.getElementById("homeXP").innerHTML=
+player.xp+" XP";
+
+document.getElementById("homeLevel").innerHTML=
+level[0];
+
+document.getElementById("homeBadges").innerHTML=
+player.badges.length;
+
+document.getElementById("homeQuizzes").innerHTML=
+player.quizzes;
+
+document.getElementById("profileXP").innerHTML=
+player.xp+" XP";
+
+document.getElementById("profileLevel").innerHTML=
+level[0];
+
+document.getElementById("statXP").innerHTML=
+player.xp;
+
+document.getElementById("statQuizzes").innerHTML=
+player.quizzes;
+
+document.getElementById("statBest").innerHTML=
+player.best;
+
+document.getElementById("statBadges").innerHTML=
+player.badges.length;
+
+var next="Maximum Level 👑";
+
+for(var i=0;i<levels.length;i++){
+
+if(levels[i][1]>player.xp){
+
+next=
+"Next Level: "+
+levels[i][0]+
+" — "+levels[i][1]+" XP";
+
+break;
+
+}
+
+}
+
+document.getElementById("nextLevel").innerHTML=next;
+
+showBadges();
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id){
+
+var pages=document.querySelectorAll(".page");
+
+for(var i=0;i<pages.length;i++){
+
+pages[i].classList.remove("active");
+
+}
+
+document.getElementById(id).classList.add("active");
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   QUESTIONS
+========================= */
+
+var questionBank={
+
+"Mathematics":{
+
+"Easy":[
+
+["What is 12 × 5?",["50","60","70","80"],1],
+["What is 100 ÷ 10?",["5","10","20","25"],1],
+["What is 15 + 25?",["30","35","40","45"],2],
+["What is 9²?",["18","72","81","90"],2],
+["What is 50% of 100?",["25","50","75","100"],1],
+["What is 7 × 8?",["48","54","56","64"],2],
+["What is 20 − 7?",["11","12","13","14"],2],
+["What is √64?",["6","7","8","9"],2],
+["What is 5³?",["15","25","100","125"],3],
+["What is 10 + 20?",["20","25","30","40"],2]
+
+],
+
+"Medium":[
+
+["Solve: 2x = 18.",["6","8","9","12"],2],
+["What is 3² + 4²?",["12","25","49","7"],1],
+["HCF of 12 and 18?",["3","6","9","12"],1],
+["LCM of 4 and 6?",["8","10","12","24"],2],
+["What is 0.5 × 20?",["5","10","15","20"],1],
+["Triangle angles are 60° and 70°. Third angle?",["40°","50°","60°","70°"],1],
+["15% of 200?",["15","20","30","40"],2],
+["(8 + 4) ÷ 3?",["3","4","5","6"],1],
+["What is 2⁵?",["10","16","25","32"],3],
+["If x + 7 = 20, x = ?",["11","12","13","14"],2]
+
+],
+
+"Hard":[
+
+["If x² = 144 and x is positive, x = ?",["10","11","12","14"],2],
+["Discriminant of x² − 5x + 6 = 0?",["1","5","25","49"],0],
+["sin 90° =",["0","1","1/2","√3/2"],1],
+["Slope of y = 3x + 2?",["2","3","5","−3"],1],
+["Probability of head on a fair coin?",["0","1/4","1/2","1"],2],
+["Sum of first 10 positive integers?",["45","50","55","60"],2],
+["2³ × 2²?",["16","32","64","128"],1],
+["If a:b = 2:3 and b=15, a=?",["5","8","10","12"],2],
+["Distance between (0,0) and (3,4)?",["3","4","5","7"],2],
+["Mean of 4,6,8,12?",["6","7","7.5","8"],2]
+
+]
+
+},
+
+
+"Science":{
+
+"Easy":[
+
+["Which gas do humans need for respiration?",["Oxygen","Carbon dioxide","Hydrogen","Helium"],0],
+["H₂O is?",["Salt","Water","Oxygen","Hydrogen"],1],
+["Which organ pumps blood?",["Lung","Brain","Heart","Kidney"],2],
+["Plants prepare food by?",["Respiration","Photosynthesis","Digestion","Filtration"],1],
+["SI unit of force?",["Joule","Newton","Watt","Pascal"],1],
+["Red Planet?",["Earth","Mars","Venus","Jupiter"],1],
+["Basic unit of life?",["Atom","Cell","Tissue","Organ"],1],
+["Liquid metal at room temperature?",["Iron","Copper","Mercury","Aluminium"],2],
+["Boiling point of water?",["50°C","75°C","100°C","150°C"],2],
+["Vitamin made with sunlight?",["A","B","C","D"],3]
+
+],
+
+"Medium":[
+
+["Cell part containing genetic material?",["Cell wall","Nucleus","Cytoplasm","Vacuole"],1],
+["pH of neutral solution?",["0","5","7","14"],2],
+["Law relating voltage, current and resistance?",["Newton","Ohm","Boyle","Snell"],1],
+["Blood cells that fight infection?",["RBC","WBC","Platelets","Plasma"],1],
+["Lens used for myopia?",["Convex","Concave","Plane","Bifocal"],1],
+["Main gas in atmosphere?",["Oxygen","Nitrogen","CO₂","Hydrogen"],1],
+["Process releasing energy from glucose?",["Respiration","Transpiration","Diffusion","Osmosis"],0],
+["Negative particle?",["Proton","Neutron","Electron","Nucleus"],2],
+["Plant tissue carrying water?",["Phloem","Xylem","Epidermis","Meristem"],1],
+["Acid in vinegar?",["HCl","Acetic acid","Sulfuric acid","Nitric acid"],1]
+
+],
+
+"Hard":[
+
+["Energy can change form but total energy is...",["Created","Destroyed","Conserved","Lost"],2],
+["Ohm's law is?",["V=IR","P=VI²","F=ma²","E=mc"],0],
+["Main filtration structure of nephron?",["Glomerulus","Alveolus","Neuron","Villus"],0],
+["Blue sky is mainly due to?",["Reflection","Refraction","Scattering","Conduction"],2],
+["Bond involving sharing electrons?",["Ionic","Covalent","Metallic","Nuclear"],1],
+["Approximate gravity near Earth?",["1.8","4.9","9.8","19.6"],2],
+["Typical male chromosome combination?",["XX","XY","YY","XO"],1],
+["Common vehicle rear-view mirror?",["Plane","Convex","Concave","Cylindrical"],1],
+["Quantity measured in joules?",["Force","Energy","Current","Resistance"],1],
+["White light splitting into colours?",["Diffraction","Dispersion","Conduction","Convection"],1]
+
+]
+
+},
+
+
+"General Knowledge":{
+
+"Easy":[
+
+["Largest planet?",["Earth","Mars","Jupiter","Venus"],2],
+["Days in a week?",["5","6","7","8"],2],
+["Fastest land animal?",["Lion","Cheetah","Horse","Tiger"],1],
+["Largest ocean?",["Atlantic","Indian","Pacific","Arctic"],2],
+["Sides of a hexagon?",["5","6","7","8"],1],
+["Pyramids of Giza are in?",["India","Egypt","Greece","Italy"],1],
+["Instrument with black and white keys?",["Violin","Piano","Flute","Trumpet"],1],
+["Smallest prime number?",["0","1","2","3"],2],
+["Commonly recognized continents?",["5","6","7","8"],2],
+["Closest star to Earth?",["Sirius","Sun","Polaris","Vega"],1]
+
+],
+
+"Medium":[
+
+["Country known as Land of Rising Sun?",["China","India","Japan","Thailand"],2],
+["Largest mammal?",["Elephant","Blue whale","Giraffe","Hippo"],1],
+["Currency of Japan?",["Won","Yuan","Yen","Ringgit"],2],
+["Highest mountain above sea level?",["K2","Everest","Denali","Kangchenjunga"],1],
+["Statue of Liberty was gifted by?",["France","Germany","Canada","Spain"],0],
+["Capital of Australia?",["Sydney","Melbourne","Canberra","Perth"],2],
+["Which planet has prominent rings?",["Mercury","Saturn","Earth","Mars"],1],
+["Largest internal human organ?",["Heart","Liver","Lung","Kidney"],1],
+["Which metal symbol is Au?",["Silver","Gold","Copper","Iron"],1],
+["Sahara Desert is in?",["Asia","Africa","Europe","Australia"],1]
+
+],
+
+"Hard":[
+
+["Chemical symbol Au?",["Silver","Gold","Copper","Iron"],1],
+["Capital of Australia?",["Sydney","Melbourne","Canberra","Perth"],2],
+["Planet with shortest year?",["Mercury","Venus","Earth","Mars"],0],
+["Ocean between Africa and Australia?",["Atlantic","Pacific","Indian","Arctic"],2],
+["Largest internal human organ?",["Heart","Liver","Lung","Kidney"],1],
+["Most abundant gas in atmosphere?",["Oxygen","Nitrogen","CO₂","Argon"],1],
+["Ancient civilization associated with cuneiform?",["Sumerian","Roman","Viking","Aztec"],0],
+["Currency of Japan?",["Won","Yuan","Yen","Ringgit"],2],
+["Sahara Desert is in?",["Asia","Africa","Europe","Australia"],1],
+["Constant approximately 3.14159?",["e","π","φ","√2"],1]
+
+]
+
+}
+
+};
+
+
+/* =========================
+   QUIZ
+========================= */
+
+var quizQuestions=[];
+var quizIndex=0;
+var quizScore=0;
+var answered=false;
+
+
+function startQuiz(){
+
+var subject=
+document.getElementById("subject").value;
+
+var difficulty=
+document.getElementById("difficulty").value;
+
+if(questionBank[subject] &&
+questionBank[subject][difficulty]){
+
+quizQuestions=
+questionBank[subject][difficulty].slice();
+
+}else{
+
+quizQuestions=
+questionBank["General Knowledge"]["Easy"].slice();
+
+}
+
+quizIndex=0;
+quizScore=0;
+
+document.getElementById("quizSetup")
+.classList.add("hidden");
+
+document.getElementById("quizResult")
+.classList.add("hidden");
+
+document.getElementById("quizGame")
+.classList.remove("hidden");
+
+document.getElementById("quizTitle").innerHTML=
+document.getElementById("standard").value+
+" • "+
+subject;
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+answered=false;
+
+var q=quizQuestions[quizIndex];
+
+document.getElementById("quizCount").innerHTML=
+"Question "+(quizIndex+1)+" / 10";
+
+document.getElementById("quizBar").style.width=
+(quizIndex*10)+"%";
+
+document.getElementById("quizQuestion").innerHTML=
+q[0];
+
+document.getElementById("quizFeedback").innerHTML="";
+
+document.getElementById("quizNext")
+.classList.add("hidden");
+
+var box=
+document.getElementById("quizAnswers");
+
+box.innerHTML="";
+
+for(var i=0;i<q[1].length;i++){
+
+var button=document.createElement("button");
+
+button.className="answer";
+
+button.innerHTML=
+String.fromCharCode(65+i)+". "+q[1][i];
+
+button.onclick=
+(function(index,btn){
+
+return function(){
+
+answerQuestion(index,btn);
+
+};
+
+})(i,button);
+
+box.appendChild(button);
+
+}
+
+}
+
+
+function answerQuestion(index,button){
+
+if(answered)return;
+
+answered=true;
+
+var q=quizQuestions[quizIndex];
+
+var buttons=
+document.querySelectorAll("#quizAnswers .answer");
+
+for(var i=0;i<buttons.length;i++){
+
+buttons[i].disabled=true;
+
+if(i===q[2]){
+buttons[i].classList.add("correct");
+}
+
+}
+
+if(index===q[2]){
+
+quizScore++;
+
+button.classList.add("correct");
+
+document.getElementById("quizFeedback").innerHTML=
+"✅ Correct!";
+
+}else{
+
+button.classList.add("wrong");
+
+document.getElementById("quizFeedback").innerHTML=
+"❌ Try the next one!";
+
+}
+
+document.getElementById("quizNext")
+.classList.remove("hidden");
+
+}
+
+
+function nextQuestion(){
+
+quizIndex++;
+
+if(quizIndex>=10){
+
+finishQuiz();
+
+}else{
+
+showQuestion();
+
+}
+
+}
+
+
+function finishQuiz(){
+
+document.getElementById("quizGame")
+.classList.add("hidden");
+
+document.getElementById("quizResult")
+.classList.remove("hidden");
+
+var earned=quizScore*10;
+
+player.xp+=earned;
+
+player.quizzes++;
+
+if(quizScore>player.best){
+
+player.best=quizScore;
+
+}
+
+unlock("first");
+
+if(quizScore===10){
+unlock("perfect");
+}
+
+if(player.quizzes>=5){
+unlock("five");
+}
+
+if(player.quizzes>=10){
+unlock("ten");
+}
+
+if(player.quizzes>=25){
+unlock("twentyfive");
+}
+
+if(player.quizzes>=50){
+unlock("fifty");
+}
+
+document.getElementById("quizScore").innerHTML=
+quizScore+"/10";
+
+document.getElementById("quizEarned").innerHTML=
+"⭐ You earned "+earned+" XP!";
+
+if(quizScore===10){
+
+document.getElementById("quizMessage").innerHTML=
+"👑 PERFECT SCORE!";
+
+}else if(quizScore>=8){
+
+document.getElementById("quizMessage").innerHTML=
+"🔥 Excellent!";
+
+}else if(quizScore>=5){
+
+document.getElementById("quizMessage").innerHTML=
+"👏 Good job!";
+
+}else{
+
+document.getElementById("quizMessage").innerHTML=
+"💪 Keep practising!";
+
+}
+
+savePlayer();
+
+}
+
+
+function backToQuiz(){
+
+document.getElementById("quizResult")
+.classList.add("hidden");
+
+document.getElementById("quizSetup")
+.classList.remove("hidden");
+
+}
+
+
+/* =========================
+   FUN QUESTIONS
+========================= */
+
+var funQuestions=[
+
+["Which animal is known as man's best friend?",
+["Dog","Cat","Horse","Rabbit"],0],
+
+["How many colours are traditionally listed in a rainbow?",
+["5","6","7","8"],2],
+
+["Which sport uses wickets?",
+["Football","Cricket","Tennis","Hockey"],1],
+
+["Which fruit has seeds on its outside?",
+["Apple","Strawberry","Banana","Orange"],1],
+
+["Which bird can mimic human speech?",
+["Parrot","Penguin","Eagle","Ostrich"],0],
+
+["Which game has kings and queens?",
+["Chess","Ludo","Carrom","Cricket"],0],
+
+["What do bees make?",
+["Milk","Honey","Bread","Cheese"],1],
+
+["Which superhero uses a star shield?",
+["Batman","Hulk","Captain America","Flash"],2],
+
+["Which month has 28 days in a common year?",
+["January","February","March","April"],1],
+
+["From which direction does the Sun appear to rise?",
+["North","South","East","West"],2]
+
+];
+
+
+var funIndex=0;
+var funScore=0;
+var funAnswered=false;
+
+
+function startFun(){
+
+funIndex=0;
+funScore=0;
+
+document.getElementById("funStart")
+.classList.add("hidden");
+
+document.getElementById("funResult")
+.classList.add("hidden");
+
+document.getElementById("funGame")
+.classList.remove("hidden");
+
+showFunQuestion();
+
+}
+
+
+function showFunQuestion(){
+
+funAnswered=false;
+
+var q=funQuestions[funIndex];
+
+document.getElementById("funCount").innerHTML=
+"Question "+(funIndex+1)+" / 10";
+
+document.getElementById("funBar").style.width=
+(funIndex*10)+"%";
+
+document.getElementById("funQuestion").innerHTML=
+q[0];
+
+document.getElementById("funFeedback").innerHTML="";
+
+document.getElementById("funNext")
+.classList.add("hidden");
+
+var box=document.getElementById("funAnswers");
+
+box.innerHTML="";
+
+for(var i=0;i<q[1].length;i++){
+
+var button=document.createElement("button");
+
+button.className="answer";
+
+button.innerHTML=
+String.fromCharCode(65+i)+". "+q[1][i];
+
+button.onclick=
+(function(index,btn){
+
+return function(){
+
+answerFun(index,btn);
+
+};
+
+})(i,button);
+
+box.appendChild(button);
+
+}
+
+}
+
+
+function answerFun(index,button){
+
+if(funAnswered)return;
+
+funAnswered=true;
+
+var q=funQuestions[funIndex];
+
+var buttons=
+document.querySelectorAll("#funAnswers .answer");
+
+for(var i=0;i<buttons.length;i++){
+
+buttons[i].disabled=true;
+
+if(i===q[2]){
+buttons[i].classList.add("correct");
+}
+
+}
+
+if(index===q[2]){
+
+funScore++;
+
+button.classList.add("correct");
+
+document.getElementById("funFeedback").innerHTML=
+"🎉 Correct!";
+
+}else{
+
+button.classList.add("wrong");
+
+document.getElementById("funFeedback").innerHTML=
+"😄 Nice try!";
+
+}
+
+document.getElementById("funNext")
+.classList.remove("hidden");
+
+}
+
+
+function nextFun(){
+
+funIndex++;
+
+if(funIndex>=10){
+
+finishFun();
+
+}else{
+
+showFunQuestion();
+
+}
+
+}
+
+
+function finishFun(){
+
+document.getElementById("funGame")
+.classList.add("hidden");
+
+document.getElementById("funResult")
+.classList.remove("hidden");
+
+document.getElementById("funScore").innerHTML=
+funScore+"/10";
+
+if(funScore===10){
+
+document.getElementById("funMessage").innerHTML=
+"👑 FUN LEGEND!";
+
+}else if(funScore>=8){
+
+document.getElementById("funMessage").innerHTML=
+"🔥 Amazing!";
+
+}else{
+
+document.getElementById("funMessage").innerHTML=
+"🎮 Good game!";
+
+}
+
+player.xp+=funScore*5;
+
+savePlayer();
+
+}
+
+
+/* =========================
+   BADGE DISPLAY
+========================= */
+
+function showBadges(){
+
+var box=document.getElementById("badges");
+
+box.innerHTML="";
+
+for(var i=0;i<badgeData.length;i++){
+
+var b=badgeData[i];
+
+var unlocked=
+player.badges.indexOf(b[0])!==-1;
+
+var div=document.createElement("div");
+
+div.className="badge";
+
+div.innerHTML=
+(unlocked?"":"🔒 ")+b[1];
+
+if(!unlocked){
+
+div.style.opacity=".35";
+
+}
+
+box.appendChild(div);
+
+}
+
+}
+
+
+/* =========================
+   PLANNER
+========================= */
+
+var tasks=
+JSON.parse(localStorage.getItem("nznTasks")) || [];
+
+
+function saveTasks(){
+
+localStorage.setItem(
+"nznTasks",
+JSON.stringify(tasks)
+);
+
+}
+
+
+function addTask(){
+
+var input=
+document.getElementById("taskInput");
+
+var text=input.value.trim();
+
+if(text===""){
+
+alert("Write a task first!");
+
+return;
+
+}
+
+tasks.push(text);
+
+input.value="";
+
+saveTasks();
+
+displayTasks();
+
+}
+
+
+function displayTasks(){
+
+var box=document.getElementById("taskList");
+
+box.innerHTML="";
+
+if(tasks.length===0){
+
+box.innerHTML="<p>No tasks yet 📚</p>";
+
+return;
+
+}
+
+for(var i=0;i<tasks.length;i++){
+
+var div=document.createElement("div");
+
+div.className="task";
+
+div.innerHTML=
+"📌 "+tasks[i]+
+" <button class='btn' onclick='deleteTask("+i+")'>Delete</button>";
+
+box.appendChild(div);
+
+}
+
+}
+
+
+function deleteTask(index){
+
+tasks.splice(index,1);
+
+saveTasks();
+
+displayTasks();
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+var seconds=1500;
+var timer=null;
+
+
+function updateTimer(){
+
+var minutes=
+Math.floor(seconds/60);
+
+var secs=
+seconds%60;
+
+document.getElementById("timerDisplay").innerHTML=
+String(minutes).padStart(2,"0")+
+":"+
+String(secs).padStart(2,"0");
+
+}
+
+
+function startTimer(){
+
+if(timer!==null)return;
+
+timer=setInterval(function(){
+
+if(seconds>0){
+
+seconds--;
+
+updateTimer();
+
+}else{
+
+clearInterval(timer);
+
+timer=null;
+
+alert("🎉 Focus session complete!");
+
+}
+
+},1000);
+
+}
+
+
+function pauseTimer(){
+
+clearInterval(timer);
+
+timer=null;
+
+}
+
+
+function resetTimer(){
+
+pauseTimer();
+
+seconds=1500;
+
+updateTimer();
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+/* =========================
+   MOTIVATION
+========================= */
+
+var quotes=[
+
+"🔥 Keep going. You are improving every day!",
+"📚 One chapter at a time!",
+"🎯 Focus today, succeed tomorrow!",
+"🧠 Learn something new every day!",
+"🏆 Your effort creates your success!",
+"🚀 Never stop learning!"
+
+];
+
+document.getElementById("motivation").innerHTML=
+quotes[Math.floor(Math.random()*quotes.length)];
+
+
+/* =========================
+   START
+========================= */
+
+updateUI();
+
+displayTasks();
+
+updateTimer();
+
+</script>
+
+</body>
+</html>
